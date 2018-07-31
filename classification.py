@@ -47,8 +47,23 @@ class Net(torch.nn.Module):
         return x
 
 # Initialize network
-net = Net(2, 10, 2)
+# Slow method to build a new network
+#net = Net(2, 10, 2)
+#print(net)
+
+# Fast method to build a new network
+
+# Configurations
+n_input = 2
+n_hidden = 10
+n_output = 2
+
+net = torch.nn.Sequential(torch.nn.Linear(n_input, n_hidden),
+                          torch.nn.ReLU(),
+                          torch.nn.Linear(n_hidden, n_output))
+
 print(net)
+Tracer()()
 
 # Define optimizer
 optimizer = torch.optim.SGD(net.parameters(), lr=0.002)
